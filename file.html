@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Tic-Tac-Toe Championship</title>
+	<style>
+		body {
+			background-color: #f0f0f0;
+			font-family: Arial, sans-serif;
+		}
+		.board {
+			display: grid;
+			grid-template-columns: repeat(3, 100px);
+			grid-gap: 10px;
+			background-color: #333;
+			padding: 20px;
+			border-radius: 10px;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+			margin: 40px auto;
+			width: 340px;
+		}
+		.cell {
+			width: 100px;
+			height: 100px;
+			background-color: #fff;
+			display: flex;
+			justify-content: 
+			center;
+			align-items: center;
+			font-size: 36px;
+			cursor: pointer;
+			border-radius: 10px;
+			transition: background-color 0.3s ease;
+		}
+		.cell:hover {
+			background-color: #ccc;
+		}
+		.X {
+			color: #008000;
+		}
+		.O {
+			color: #ff0000;
+		}
+		.headline {
+			color: #333;
+			text-align: center;
+			margin-bottom: 20px;
+			font-size: 36px;
+			font-weight: bold;
+		}
+	</style>
+</head>
+<body>
+	<h1 class="headline">Tic-Tac-Toe Championship</h1>
+	<div class="board">
+		<div class="cell" id="cell-1" onclick="makeMove(1)"></div>
+		<div class="cell" id="cell-2" onclick="makeMove(2)"></div>
+		<div class="cell" id="cell-3" onclick="makeMove(3)"></div>
+		<div class="cell" id="cell-4" onclick="makeMove(4)"></div>
+		<div class="cell" id="cell-5" onclick="makeMove(5)"></div>
+		<div class="cell" id="cell-6" onclick="makeMove(6)"></div>
+		<div class="cell" id="cell-7" onclick="makeMove(7)"></div>
+		<div class="cell" id="cell-8" onclick="makeMove(8)"></div>
+		<div class="cell" id="cell-9" onclick="makeMove(9)"></div>
+	</div>
+	<script>
+		let currentPlayer = 'X';
+		function 
+		makeMove(cellNumber) {
+			const cell = document.getElementById(`cell-${cellNumber}`);
+			if (cell.innerText === '') {
+				cell.innerText = currentPlayer;
+				cell.classList.add(currentPlayer);
+				currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+				checkWin();
+			}
+		}
+		function checkWin() {
+			const winConditions = [
+				[1, 2, 3],
+				[4, 5, 6],
+				[7, 8, 9],
+				[1, 4, 7],
+				[2, 5, 8],
+				[3, 6, 9],
+				[1, 5, 9],
+				[3, 5, 7]
+			];
+			for (let i = 0; i < winConditions.length; i++) {
+				const [a,b, c] = winConditions[i];
+				if (document.getElementById(`cell-${a}`).innerText !== '' &&
+					document.getElementById(`cell-${a}`).innerText === document.getElementById(`cell-${b}`).innerText &&
+					document.getElementById(`cell-${a}`).innerText === document.getElementById(`cell-${c}`).innerText) {
+					alert(`Player ${document.getElementById(`cell-${a}`).innerText} wins!`);
+					return;
+				}
+			}
+		}
+	</script>
+</body>
+</html>
+
+ 
